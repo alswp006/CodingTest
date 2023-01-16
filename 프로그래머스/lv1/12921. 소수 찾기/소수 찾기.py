@@ -1,8 +1,13 @@
 def solution(n):
-    answer = n-1
-    for i in range(2,n+1):
-        for j in range(2,int(i**0.5)+1):
-            if i%j==0: 
-                answer-=1
-                break
+    answer=0
+    array = [True for i in range(n + 1)] 
+    for i in range(2, int(n**0.5) + 1): 
+        if array[i] == True: 
+            j = 2
+            while i * j <= n:
+                array[i * j] = False
+                j += 1
+    for i in range(2, n + 1):
+        if array[i]:
+            answer+=1
     return answer

@@ -5,6 +5,7 @@ def solution(s):
     for i in range(1,len(s)-1):
         if s[i]==a:
             x+=1
+            continue
         else :
             y+=1
         if x==y:

@@ -5,4 +5,4 @@ for i in range(int(input())):
     answer[int(input())]+=1
 for i in range(len(answer)):
     for j in range(1,answer[i]+1):
-        print(i)
+        sys.stdout.write(str(i)+'\n')

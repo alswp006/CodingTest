@@ -1,3 +1,7 @@
+import sys
+
+input=sys.stdin.readline
+
 n= input()
 num= set(input().split())
 m= input()

@@ -6,7 +6,7 @@ input=sys.stdin.readline
 left=deque(input().rstrip())
 right=deque()
 for _ in range(int(input())):
-    arr=input().rstrip().split()
+    arr=input().split()
     if arr[0]=='L' and len(left)!=0:
         right.appendleft(left.pop())
     elif arr[0]=='D' and len(right)!=0:

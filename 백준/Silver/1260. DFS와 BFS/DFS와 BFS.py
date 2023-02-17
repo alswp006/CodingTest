@@ -8,28 +8,26 @@ for i in range(m):
     a,b=map(int,input().split())
     graph[a].append(b)
     graph[b].append(a)
-def dfs(v,visited):
+def dfs(v):
     visited[v]=True
     print(v,end=' ')
-    graph[v].sort()
-    for i in graph[v]:
-        if visited[i]==False:
-            dfs(i,visited)
+    for i in sorted(graph[v]):
+        if not visited[i]:
+            dfs(i)
 
-def bfs(v,visited):
+def bfs(v):
     q=deque([v])
     visited[v]=True
     while q:
         c=q.popleft()
         print(c,end=' ')
-        graph[c].sort()
-        for i in graph[c]:
-            if visited[i]==False:
+        for i in sorted(graph[c]):
+            if not visited[i]:
                 q.append(i)
                 visited[i]=True
 
 visited=[False] *(n+1)
-dfs(v,visited)
+dfs(v)
 print()
 visited=[False] *(n+1)
-bfs(v,visited)
+bfs(v)

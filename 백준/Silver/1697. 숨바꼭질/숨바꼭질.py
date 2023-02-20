@@ -1,16 +1,11 @@
-from collections import deque
+def find(n, k):
+    if n >= k:
+        return n - k
+    elif k == 1:
+        return 1
+    elif k % 2:
+        return min (find(n, k + 1), find(n, k - 1)) +1     
+    else:
+        return min (k - n, find(n, k // 2) + 1)
 
-n,m=map(int,input().split())
-d=[0 for _ in range(100001)]
-
-q=deque()
-q.append(n)
-while q:
-    x=q.popleft()
-    if x==m:break
-    dx=[x-1,x+1,x*2]
-    for i in dx:
-        if 0<=i<100001 and not d[i]:
-            d[i]=d[x]+1
-            q.append(i)
-print(d[m])
+print(find(*map(int, input().split())))

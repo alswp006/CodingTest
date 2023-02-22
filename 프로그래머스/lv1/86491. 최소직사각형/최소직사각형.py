@@ -1,4 +1,7 @@
 def solution(sizes):
-    for i in range(len(sizes)):sizes[i]=sorted(sizes[i])
-    answer =list(map(list,zip(*sizes)))
-    return max(answer[0])*max(answer[1])
+    ma=max(sizes[0])
+    mi=min(sizes[0])
+    for i in sizes:
+        ma=max(ma,max(i))
+        mi=max(mi,min(i))
+    return ma*mi

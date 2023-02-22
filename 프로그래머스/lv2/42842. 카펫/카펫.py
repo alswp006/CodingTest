@@ -1,5 +1,6 @@
 def solution(brown, yellow):
-    for i in range(3,brown+yellow):
-        if (brown+yellow)%i!=0:continue
-        a2 = int((brown+yellow)/i)
-        if (i*2)+(a2-2)*2==brown:return[a2,i]
+    arr=[]
+    for i in range(1,int(yellow**0.5)+1):
+        if yellow%i==0:
+            if (i*2)+(yellow//i*2)+4==brown:
+                return [yellow//i+2,i+2]

@@ -1,5 +1,9 @@
-SELECT MEMBER_NAME, REVIEW_TEXT, DATE_FORMAT(REVIEW_DATE, '%Y-%m-%d') REVIEW_DATE
-FROM MEMBER_PROFILE M, REST_REVIEW R
-WHERE M.MEMBER_ID = R.MEMBER_ID
-    AND R.MEMBER_ID = (SELECT MEMBER_ID FROM REST_REVIEW GROUP BY MEMBER_ID ORDER BY COUNT(REVIEW_TEXT) DESC LIMIT 1)
-ORDER BY REVIEW_DATE ASC, REVIEW_TEXT ASC
+select M.MEMBER_NAME,R.REVIEW_TEXT,date_format(REVIEW_DATE,'%Y-%m-%d') as REVIEW_DATE
+from MEMBER_PROFILE M,REST_REVIEW R
+where M.member_id = R.member_id
+and R.member_id = (select member_id
+                           from REST_REVIEW
+                           group by member_id
+                           order by count(member_id) desc
+                           limit 1)
+order by 3,2

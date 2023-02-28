@@ -1,10 +1,9 @@
 import sys
 input=sys.stdin.readline
 n,m=map(str,input().split())
-arr=[]
+arr=set()
 for _ in range(int(n)):
-    arr.append(input().rstrip())
-arr=list(set(arr))
+    arr.add(input().rstrip())
 if m=='Y':
     print(len(arr))
 elif m=='F':

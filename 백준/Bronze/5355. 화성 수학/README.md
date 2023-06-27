@@ -8,7 +8,7 @@
 
 ### 분류
 
-사칙연산(arithmetic), 구현(implementation), 수학(math)
+사칙연산, 구현, 수학
 
 ### 문제 설명
 

@@ -1,5 +1,9 @@
-n=int(input())
-i=1
-while int(i*(i+1)/2)<=n:
-    i+=1
-print(i-1)
+s=int(input())
+n=s
+answer=0
+for i in range(1,s):
+    if s>=i:
+        s-=i
+        answer+=1
+    else: break
+print(answer if answer!=0 else 1)

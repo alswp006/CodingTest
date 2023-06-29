@@ -1,11 +1,12 @@
-n=int(input())
-m=int(input())
+a=int(input())
+b=int(input())
 answer=0
-mi=0
-for i in range(n,m+1):
+m=100000000
+for i in range(a,b+1):
     if i%(i**0.5)==0:
+        m=min(m,i)
         answer+=i
-        if mi==0:
-            mi=i
-print(answer if answer!=0 else -1)
-if mi !=0:print(mi)
+if answer==0:print(-1)
+else: 
+    print(answer)
+    print(m)

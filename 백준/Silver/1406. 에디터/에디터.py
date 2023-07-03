@@ -1,18 +1,28 @@
 import sys
-from collections import deque
 
-input=sys.stdin.readline
+def main():
+    get = open(0).read().split().__iter__().__next__
 
-left=deque(input().rstrip())
-right=deque()
-for _ in range(int(input())):
-    arr=input().split()
-    if arr[0]=='L' and len(left)!=0:
-        right.appendleft(left.pop())
-    elif arr[0]=='D' and len(right)!=0:
-        left.append(right.popleft())
-    elif arr[0]=='B' and len(left)!=0:
-        left.pop()
-    elif arr[0]=='P':
-        left.append(arr[1])
-sys.stdout.write(''.join(left+right))
+    left = list(get())
+    right = []
+
+    for _ in range(int(get())):
+        command = get()
+        if command == "L":
+            if left:
+                right.append(left.pop())
+        elif command == "D":
+            if right:
+                left.append(right.pop())
+        elif command == "B":
+            if left:
+                left.pop()
+        else:
+            left.append(get())
+
+    print("".join(left), end="")
+    print("".join(right[::-1]))
+
+
+if __name__ == "__main__":
+    sys.exit(main())

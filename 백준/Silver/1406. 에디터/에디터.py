@@ -1,28 +1,19 @@
 import sys
 
-def main():
-    get = open(0).read().split().__iter__().__next__
+input=sys.stdin.readline
 
-    left = list(get())
-    right = []
+left=list(input().rstrip())
+right=[]
+for _ in range(int(input())):
+    arr=input().split()
+    if arr[0]=='L' and left:
+        right.append(left.pop())
+    elif arr[0]=='D' and right:
+        left.append(right.pop())
+    elif arr[0]=='B' and left:
+        left.pop()
+    elif arr[0]=='P':
+        left.append(arr[1])
 
-    for _ in range(int(get())):
-        command = get()
-        if command == "L":
-            if left:
-                right.append(left.pop())
-        elif command == "D":
-            if right:
-                left.append(right.pop())
-        elif command == "B":
-            if left:
-                left.pop()
-        else:
-            left.append(get())
-
-    print("".join(left), end="")
-    print("".join(right[::-1]))
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+print("".join(left), end="")
+print("".join(right[::-1]))

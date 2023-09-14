@@ -6,16 +6,16 @@ length = int(input())#표본수열의 길이를 받습니다.
 stand = ' '.join(input().split())#기준이 될 표본수열을 받습니다.나중에 비교해줍니다.
 copy = ''#반대방향으로 돌리는 경우를 아래 반복문으로 만들어줍니다.
 
-for i in range(len(stand)):#회전방향과 상하좌우를 동시에 바꿔줍니다.
-    if stand[len(stand) - 1 - i] == ' ':
+for i in range(len(stand)-1,-1,-1):#회전방향과 상하좌우를 동시에 바꿔줍니다.
+    if stand[i] == ' ':
         copy += ' '
-    elif stand[len(stand) - 1 - i] == '1':
+    elif stand[i] == '1':
         copy += '3'
-    elif stand[len(stand) - 1 - i] == '2':
+    elif stand[i] == '2':
         copy += '4'
-    elif stand[len(stand) - 1 - i] == '3':
+    elif stand[i] == '3':
         copy += '1'
-    elif stand[len(stand) - 1 - i] == '4':
+    elif stand[i] == '4':
         copy += '2'
         
 stand = stand + ' ' + stand

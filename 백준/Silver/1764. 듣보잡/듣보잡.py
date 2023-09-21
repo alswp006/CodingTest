@@ -1,21 +1,10 @@
 import sys
-
-input = sys.stdin.readline
-
-n,m=map(int,input().split())
-arr=set()
-answer=[]
-answer_num=0
-
-for i in range(n):
-    arr.add(str(input().rstrip()))
-
-for i in range(m):
-    s=str(input().rstrip())
-    if s in arr:
-        answer.append(s)
-        answer_num+=1
-answer.sort()
-print(answer_num)
-for i in answer:
+n, m = map(int, input().split())
+nameList = sys.stdin.read().splitlines()
+hearset = set(nameList[:n])
+seeset = set(nameList[n:])
+ret = list(hearset & seeset)
+ret.sort()
+print(len(ret))
+for i in ret:
     print(i)

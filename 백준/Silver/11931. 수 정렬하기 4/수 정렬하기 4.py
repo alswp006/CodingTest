@@ -1,5 +1,5 @@
 import sys
 input = sys.stdin.readline
 
-arr=sorted([int(input()) for i in range(int(input()))],reverse=True)
-for i in arr: print(i)
+arr=[int(input()) for i in range(int(input()))]
+print('\n'.join(map(str,sorted(arr,reverse=True))))

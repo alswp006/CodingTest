@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int x = Integer.parseInt(st.nextToken());
         int y = Integer.parseInt(st.nextToken());
@@ -19,9 +20,11 @@ public class Main {
         }
         for (int[] y_arr : array1){
             for (int num : y_arr){
-                System.out.print(num + " ");
+                bw.write(num + " ");
             }
-            System.out.println();
+            bw.newLine();
         }
+        bw.flush();
+        bw.close();
     }
 }

@@ -1,18 +1,23 @@
 import sys
 
-input=sys.stdin.readline
-n=int(input())
-m=int(input())
-graph=[[] for i in range(n+1)]
-for _ in range(m):
-    a,b=map(int,input().split())
-    graph[a].append(b)
-    graph[b].append(a)
-def dfs(v):
-    visited[v]=1
-    for i in graph[v]:
-        if visited[i]==0:
-            dfs(i)
-visited=[0]*(n+1)
-dfs(1)
-print(sum(visited)-1)
+input = sys.stdin.readline
+
+
+def dfs(node, visited=[]):
+    visited.append(node)
+
+    for i in arr[node]:
+        if not i in visited:
+            visited = dfs(i, visited)
+    return visited
+
+
+arr = [[] for i in range(int(input()) + 1)]
+count = 0
+
+for _ in range(int(input())):
+    x, y = map(int, input().split())
+    arr[x].append(y)
+    arr[y].append(x)
+
+print(len(dfs(1, visited=[])) - 1)

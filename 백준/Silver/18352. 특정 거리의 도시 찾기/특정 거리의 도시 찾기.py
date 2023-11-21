@@ -15,25 +15,25 @@ answer=[]
 
 for _ in range(m):
     starting_node, destination_node = map(int,input().split())
-    arr[starting_node].append([destination_node,1])
+    arr[starting_node].append([1, destination_node])
 
 def dijkstra():
     while heap:
         v, w = heapq.heappop(heap)
-        for x, y in arr[w]:
-            update = y + v
-            if update < table[x]:
-                table[x] = update
-                heapq.heappush(heap, [update, x])
+        for next_dist, next_node in arr[w]:
+            update = next_dist + v
+            if update < table[next_node]:
+                table[next_node] = update
+                heapq.heappush(heap, [update, next_node])
 
 dijkstra()
 
+has_answer = False
+
 for i in range(1, len(table)):
     if table[i] == target_distance:
-        answer.append(i)
-
-if answer:
-    for i in answer:
         print(i)
-else:
+        has_answer = True
+
+if not has_answer:
     print(-1)

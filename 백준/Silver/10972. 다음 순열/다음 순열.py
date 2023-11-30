@@ -6,7 +6,7 @@ def next_permutation(arr):
         return False
 
     j = len(arr) - 1
-    while arr[j] <= arr[i - 1]:
+    while arr[j] < arr[i - 1]:
         j -= 1
     arr[i - 1], arr[j] = arr[j], arr[i - 1]
 

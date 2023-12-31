@@ -1,34 +1,54 @@
 import sys
 input = sys.stdin.readline
+# 이 문제는 dfs가 효율적인가 빡구현이 효율적인가.. 형이 일단 구현문제라고 해서 빡구현 해벌임..
+shape = [# 좌표는 변하면 안되니까 튜플로 저 -> 이 좌표들을 규칙성을 가지고 반복문으로 생성할 방법은 없을까?
+    # 사각형
+    [(0, 1), (1, 0), (1, 1)],
+    # 일자 모양
+    [(0, 1), (0, 2), (0, 3)],
+    [(1, 0), (2, 0), (3, 0)],
+    # ㄴ 모양
+    [(1, 0), (2, 0), (2, 1)],
+    [(1, 0), (2, 0), (2, -1)],
+    [(1, 0), (1, 1), (1, 2)],
+    [(0, 1), (1, 0), (2, 0)],
+    # ㄱ 모양
+    [(0, 1), (0, 2), (1, 0)],
+    [(0, 1), (0, 2), (-1, 2)],
+    [(0, 1), (1, 1), (2, 1)],
+    [(1, 0), (1, 1), (2, 1)],
+    # ㅜ 모양
+    [(0, 1), (0, 2), (1, 1)],
+    [(1, 0), (1, 1), (2, 0)],
+    [(0, 1), (0, 2), (-1, 1)],
+    [(1, 0), (1, -1), (2, 0)],
+    # 용가리 모양
+    [(0, 1), (0, 2), (1, 2)],
+    [(1, 0), (1, -1), (2, -1)],
+    [(0, 1), (1, 1), (1, 2)],
+    [(0, 1), (1, 0), (1, -1)],
+    [(0, 1), (1, 1), (1, 0)],
+    [(0, 1), (1, 1), (-1, 1)]
+]
 
-def is_valid(nr, nc):
-    return 0 <= nr < N and 0 <= nc < M and visit[nr][nc] == 0
+n,m = map(int,input().split())
+arr = [list(map(int,input().split())) for i in range(n)]
 
-def dfs(x, y, idx, total):
-    if idx == 3:
-        return total
-    max_val = 0
-    for dx, dy in direction:
-        nx = x + dx
-        ny = y + dy
-        if is_valid(nx, ny):
-            visit[nx][ny] = 1
-            if idx == 1:
-                max_val = max(max_val, dfs(x, y, idx + 1, total + arr[nx][ny]))
-            max_val = max(max_val, dfs(nx, ny, idx + 1, total + arr[nx][ny]))
-            visit[nx][ny] = 0
-    return max_val
+def find(x, y):
+    for i in range(len(shape)):
+        result = arr[x][y]
+        for dx, dy in shape[i]:
+            if 0 <= x + dx < n and 0 <= y + dy < m:
+                result += arr[x + dx][y + dy]
+                continue
+            break
+        else:
+            answer.add(result)
 
-N, M = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(N)]
-visit = [[0] * M for _ in range(N)]
-direction = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-max_val = 0
+answer = set()
 
-for x in range(N):
-    for y in range(M):
-        visit[x][y] = 1
-        max_val = max(max_val, dfs(x, y, 0, arr[x][y]))
-        visit[x][y] = 0
+for i in range(n):
+    for j in range(m):
+        find(i, j) # 4중 for문은 보기가 안좋아서 메소드화..
 
-print(max_val)
+print(max(answer))

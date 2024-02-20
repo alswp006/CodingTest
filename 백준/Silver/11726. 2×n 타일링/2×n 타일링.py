@@ -1,7 +1,10 @@
-n=int(input())
-arr=[0 for i in range(n+2)]
-arr[1]=1
-arr[2]=2
-for i in range(3,n+1):
-    arr[i]=arr[i-2]+arr[i-1]
-print(arr[n]%10007)
+n = int(input())
+
+d = [0] * (n + 1)
+d[1] = 1
+if n > 1:
+    d[2] = 2
+
+for i in range(3, n + 1):
+    d[i] = d[i - 2] + d[i - 1]
+print(d[-1] % 10007)

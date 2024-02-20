@@ -1,33 +1,42 @@
-from collections import deque
 import sys
+from collections import deque
 
-input=sys.stdin.readline
-n,m,v=map(int,input().split())
-graph=[[] for _ in range(n+1)]
+input = sys.stdin.readline
+
+n, m, v = map(int, input().split())
+arr = [[] for i in range(n + 1)]
 for i in range(m):
-    a,b=map(int,input().split())
-    graph[a].append(b)
-    graph[b].append(a)
-def dfs(v):
-    visited[v]=True
-    print(v,end=' ')
-    for i in sorted(graph[v]):
-        if not visited[i]:
+    start, end = map(int, input().split())
+    arr[start].append(end)
+    arr[end].append(start)
+
+for i in range(len(arr)):
+    arr[i].sort()
+
+dfs_visited = [False for i in range(n + 1)]
+bfs_visited = [False for i in range(n + 1)]
+
+
+def dfs(x):
+    print(x, end=' ')
+    dfs_visited[x] = True
+    for i in arr[x]:
+        if dfs_visited[i] == False:
             dfs(i)
 
-def bfs(v):
-    q=deque([v])
-    visited[v]=True
-    while q:
-        c=q.popleft()
-        print(c,end=' ')
-        for i in sorted(graph[c]):
-            if not visited[i]:
-                q.append(i)
-                visited[i]=True
 
-visited=[False] *(n+1)
+def bfs(x):
+    q = deque()
+    q.append(x)
+    bfs_visited[x] = True
+    while q:
+        temp = q.popleft()
+        print(temp, end=' ')
+        for i in arr[temp]:
+            if bfs_visited[i] == False:
+                bfs_visited[i] = True
+                q.append(i)
+
 dfs(v)
 print()
-visited=[False] *(n+1)
 bfs(v)

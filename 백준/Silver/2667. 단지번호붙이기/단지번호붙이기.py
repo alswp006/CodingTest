@@ -1,32 +1,35 @@
-from collections import deque
 import sys
 
-input=sys.stdin.readline
-n=int(input())
-arr=[]
-num=0
-for i in range(n):
-    arr.append(list(map(int,input().rstrip())))
+input = sys.stdin.readline
 
-def dfs(x,y):
-    global answer
-    if x<0 or y<0 or x>=n or y>=n:return False
-    if arr[x][y]==1:
-        arr[x][y]=0
-        answer+=1
-        dfs(x-1,y)
-        dfs(x+1,y)
-        dfs(x,y-1)
-        dfs(x,y+1)
-        return True
-    return False
-result=[]
-for i in range(n):
-    for j in range(n):
-        answer=0
-        if dfs(i,j)==True:
-            num+=1
-            result.append(answer)
-result.sort()
-print(num)
-for i in result:print(i)
+arr = [list(map(int, input().rstrip())) for i in range(int(input()))]
+
+answer = []
+
+
+def find(x, y):
+    global count
+    if x < 0 or y < 0 or x >= len(arr) or y >= len(arr):
+        return False
+    if arr[x][y] == 0:
+        return False
+
+    arr[x][y] = 0
+    count += 1
+    find(x + 1, y)
+    find(x - 1, y)
+    find(x, y - 1)
+    find(x, y + 1)
+
+
+for i in range(len(arr)):
+    for j in range(len(arr[i])):
+        count = 0
+        if arr[i][j] == 1:
+            find(i, j)
+            answer.append(count)
+
+answer.sort()
+print(len(answer))
+for i in answer:
+    print(i)

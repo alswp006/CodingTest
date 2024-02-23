@@ -1,13 +1,6 @@
 import sys
 
-input = sys.stdin.readline
-
-a, b, c = 0, 0, 0
-answer = 0
-di = dict()
-di[(0, 0, 0)] = 1
-di[(20, 20, 20)] = 1048576
-
+di = {(0, 0, 0): 1, (20, 20, 20): 1048576}
 
 def w(a, b, c):
     if (a, b, c) in di.keys():
@@ -19,7 +12,7 @@ def w(a, b, c):
     if a > 20 or b > 20 or c > 20:
         return di[(20, 20, 20)]
 
-    if a < b and b < c:
+    if a < b < c:
         di[(a, b, c)] = w(a, b, c - 1) + w(a, b - 1, c - 1) - w(a, b - 1, c)
         return di[(a, b, c)]
     else:
@@ -33,7 +26,7 @@ def w(a, b, c):
 
 
 while True:
-    a, b, c = map(int, input().split())
+    a, b, c = map(int, sys.stdin.readline().split())
     if a == b == c == -1:
         break
     print("w(%d, %d, %d) = %d" % (a, b, c, w(a, b, c)))

@@ -36,7 +36,4 @@ while True:
     a, b, c = map(int, input().split())
     if a == b == c == -1:
         break
-    if (a, b, c) in di.keys():
-        print("w(%d, %d, %d) = %d" % (a, b, c, di[(a, b, c)]))
-        continue
     print("w(%d, %d, %d) = %d" % (a, b, c, w(a, b, c)))

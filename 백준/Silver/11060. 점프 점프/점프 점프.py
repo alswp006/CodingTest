@@ -8,10 +8,10 @@ answer = [1002] * n
 answer[0] = 0
 
 for i in range(len(jump)):
-    if answer == 1002:
+    if answer[i] == 1002:
         continue
     for j in range(1, jump[i] + 1):
-        if i + j < n:
-            answer[i+j] = min(answer[i+j], answer[i] + 1)
+        if i + j < n and answer[i+j] == 1002:
+            answer[i+j] = answer[i] + 1
 
 print(answer[-1] if answer[-1] != 1002 else -1)

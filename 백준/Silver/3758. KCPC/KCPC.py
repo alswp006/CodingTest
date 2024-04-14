@@ -19,13 +19,12 @@ for _ in range(int(input())):
         last_submit[team_id] = i
 
     my_team_score = team_total_score[t]
+    my_team_count = count_submit[t]
+    my_team_last = last_submit[t]
+
     for i in range(1, n + 1):
-        if team_total_score[i] > my_team_score:
+        if (team_total_score[i] > my_team_score) or \
+            (team_total_score[i] == my_team_score and count_submit[i] < my_team_count) or \
+            (team_total_score[i] == my_team_score and count_submit[i] == my_team_count and last_submit[i] < my_team_last):
             answer += 1
-        elif team_total_score[i] == my_team_score:
-            if count_submit[i] < count_submit[t]:
-                answer += 1
-            elif count_submit[i] == count_submit[t]:
-                if last_submit[i] < last_submit[t]:
-                    answer += 1
     print(answer)

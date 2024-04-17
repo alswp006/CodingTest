@@ -10,7 +10,8 @@ heapq.heapify(arr) # 힙으로 변환
 for _ in range(n - 1):
     nums = map(int,input().split())
     for i in nums:
-        heapq.heappush(arr, i)
-        heapq.heappop(arr)
+        if i > arr[0]:
+            heapq.heappush(arr, i)
+            heapq.heappop(arr)
         
 print(arr[0])

@@ -5,32 +5,24 @@ input = sys.stdin.readline
 n = int(input())
 s = input().rstrip()
 
+def move(ball1):
+    temp_answer = 0
 
-def move(r, b):
-    answer = 0
-    flag = False
-
-    for i in range(n):
-        if s[i] == r and flag:
-            answer += 1
-            continue
-        if s[i] == b:
-            flag = True
+    for i in s.rstrip(ball1):
+        if i == ball1:
+            temp_answer += 1
 
     temp = 0
-    flag = False
-    for i in range(n - 1, -1, -1):
-        if temp > answer:
+    for i in reversed(s.lstrip(ball1)):
+        if temp > temp_answer:
             break
-        if s[i] == r and flag:
+        if i == ball1:
             temp += 1
-            continue
-        if s[i] == b:
-            flag = True
     else:
-        answer = temp
-    return answer
+        temp_answer = temp
+
+    return temp_answer
 
 
-answer = min(move("R", "B"), move("B", "R"))
+answer = min(move("R"), move("B"))
 print(answer)

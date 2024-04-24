@@ -1,13 +1,12 @@
 n = int(input())
-arr = ''.join(input().split())
+s = ''.join(input().split())
 desc = 9
 asc = 0
 answer_min = []
 answer_max = []
-arr_max = arr
-arr_min = arr
+temp_s = s
 
-if arr_max[0] == ">":
+if s[0] == ">":
     answer_max.append(desc)
     desc -= 1
 else:
@@ -15,32 +14,32 @@ else:
     asc += 1
 
 for i in range(n):
-    len_under = len(arr_max) - len(arr_max.lstrip("<"))
-    len_over = len(arr_max) - len(arr_max.lstrip(">"))
+    len_under = len(temp_s) - len(temp_s.lstrip("<"))
+    len_over = len(temp_s) - len(temp_s.lstrip(">"))
 
     if len_under > 0:
         for i in range(desc - len_under, desc + 1):
             answer_max.append(i)
-        arr_max = arr_max.lstrip("<")
-        desc -= len_under + 1
 
         for i in range(asc, asc + len_under - 1):
             answer_min.append(i)
-        arr_min = arr_min.lstrip("<")
+
+        temp_s = temp_s.lstrip("<")
+        desc -= len_under + 1
         asc += len_under - 1
 
-    if len_over > 0:
+    elif len_over > 0:
         for i in range(desc, desc - len_over + 1, -1):
             answer_max.append(i)
-        arr_max = arr_max.lstrip(">")
-        desc -= len_over - 1
 
         for i in range(asc + len_over, asc - 1, -1):
             answer_min.append(i)
-        arr_min = arr_min.lstrip(">")
+
+        temp_s = temp_s.lstrip(">")
+        desc -= len_over - 1
         asc += len_over + 1
 else:
-    if arr[-1] == ">":
+    if s[-1] == ">":
         answer_max.append(desc)
     else:
         answer_min.append(asc)

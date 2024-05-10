@@ -7,6 +7,7 @@ public class Main {
     private static int n;
     private static ArrayList<Integer>[] li;
     private static boolean[] visited;
+    private static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,7 +15,6 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int v = Integer.parseInt(st.nextToken());
-        visited = new boolean[n + 1];
         li = new ArrayList[n + 1];
         for (int i = 0; i < n + 1; i++) {
             li[i] = new ArrayList<Integer>();
@@ -24,26 +24,28 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             int node = Integer.parseInt(st.nextToken());
             int fin_node = Integer.parseInt(st.nextToken());
-            li[node].add(fin_node);
-            li[fin_node].add(node); // 양방향 그래프인 경우 추가
+            li[node].add(fin_node   );
+            li[fin_node].add(node);
         }
 
         for (int i = 0; i <= n; i++){
             Collections.sort(li[i]);
         }
 
-        dfs(v);
         visited = new boolean[n + 1];
-        System.out.println();
+        dfs(v);
+        sb.append("\n");
+        visited = new boolean[n + 1];
         bfs(v);
+
+        System.out.println(sb);
     }
 
     private static void dfs(int v){
         visited[v] = true;
-        System.out.print(v + " ");
+        sb.append(v).append(" ");
 
-        for (int i = 0; i < li[v].size(); i++){
-            int nextNode = li[v].get(i);
+        for (int nextNode : li[v]){
             if (!visited[nextNode]){
                 dfs(nextNode);
             }
@@ -51,16 +53,15 @@ public class Main {
     }
 
     private static void bfs(int v){
-        Queue<Integer> q = new LinkedList<>();
         visited[v] = true;
+        Queue<Integer> q = new LinkedList<>();
         q.add(v);
 
         while (!q.isEmpty()){
             int node = q.remove();
-            System.out.print(node + " ");
+            sb.append(node).append(" ");
 
-            for (int i = 0; i < li[node].size(); i++){
-                int nextNode = li[node].get(i);
+            for (int nextNode : li[node]){
                 if (!visited[nextNode]){
                     visited[nextNode] = true;
                     q.add(nextNode);

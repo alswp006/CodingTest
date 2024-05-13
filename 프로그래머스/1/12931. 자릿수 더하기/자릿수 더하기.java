@@ -1,12 +1,8 @@
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Solution {
     public int solution(int n) {
-        int answer = 0;
-        while (n > 0){
-            answer += n % 10;
-            n /= 10;
-        }
-        return answer;
+        return IntStream.of(Integer.toString(n).chars().map(c -> c-'0').toArray()).sum();
     }
 }

@@ -5,7 +5,7 @@ input = sys.stdin.readline
 for _ in range(int(input())):
     n = int(input())
     arr = list(map(int, input().split()))
-    temp = [0] * 201
+    temp = [0 for i in range(201)]
     team_seq = []
     team = dict()
     for i in arr:

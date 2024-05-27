@@ -39,9 +39,11 @@ public class Main {
             sb.append(answer).append("\n");
         }
 
-        System.out.println(sb);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 }
 
 // bw 사용 : 460ms
-// StringBuilder 사용 : 
+// StringBuilder 사용 : 420ms

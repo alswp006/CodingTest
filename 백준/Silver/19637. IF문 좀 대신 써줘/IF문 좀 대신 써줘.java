@@ -6,6 +6,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int[] powers = new int[n];
@@ -35,12 +36,12 @@ public class Main {
             power = Integer.parseInt(br.readLine());
             int num = Arrays.binarySearch(powers, power);
             String answer = num >= 0 ? names[num] : names[num * -1 - 1];
-            bw.write(answer + "\n");
+            sb.append(answer).append("\n");
         }
 
-        bw.flush();
-        bw.close();
+        System.out.println(sb);
     }
 }
 
-// bw 사용 :
+// bw 사용 : 460ms
+// StringBuilder 사용 : 

@@ -10,13 +10,13 @@ public class Main {
         int w = Integer.parseInt(st.nextToken());
         int x = Integer.parseInt(st.nextToken());
         int y = Integer.parseInt(st.nextToken());
-        int[][] arr = new int[h + x][w + y];
+        int[][] arr = new int[h][w];
 
         for(int i = 0; i < h + x; i++){
             st = new StringTokenizer(br.readLine());
             for(int j = 0; j < w + y; j++) {
-                arr[i][j] = Integer.parseInt(st.nextToken());
                 if (i < h && j < w){
+                    arr[i][j] = Integer.parseInt(st.nextToken());
                     if (i >= x && j >= y) arr[i][j] -= arr[i - x][j - y];
                     sb.append(arr[i][j]).append(" ");
                 }

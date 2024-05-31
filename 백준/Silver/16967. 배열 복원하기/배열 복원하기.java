@@ -12,16 +12,14 @@ public class Main {
         int y = Integer.parseInt(st.nextToken());
         int[][] arr = new int[h][w];
 
-        for(int i = 0; i < h + x; i++){
+        for(int i = 0; i < h; i++){
             st = new StringTokenizer(br.readLine());
-            for(int j = 0; j < w + y; j++) {
-                if (i < h && j < w){
-                    arr[i][j] = Integer.parseInt(st.nextToken());
-                    if (i >= x && j >= y) arr[i][j] -= arr[i - x][j - y];
-                    sb.append(arr[i][j]).append(" ");
-                }
+            for(int j = 0; j < w; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+                if (i >= x && j >= y) arr[i][j] -= arr[i - x][j - y];
+                sb.append(arr[i][j]).append(" ");
             }
-            if (i < h) sb.append("\n");
+            sb.append("\n");
         }
 
         System.out.println(sb);

@@ -14,17 +14,17 @@ public class Main {
 
         for(int i = 0; i < h + x; i++){
             st = new StringTokenizer(br.readLine());
-            for(int j = 0; j < w + y; j++) arr[i][j] = Integer.parseInt(st.nextToken());
+            for(int j = 0; j < w + y; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+                if (i < h && j < w){
+                    if (i >= x && j >= y) arr[i][j] -= arr[i - x][j - y];
+                    sb.append(arr[i][j]).append(" ");
+                }
+            }
+            if (i < h) sb.append("\n");
         }
 
-        for(int i = x; i < h + x; i++){
-            for(int j = y; j < w + y; j ++) arr[i][j] -= arr[i - x][j - y];
-        }
-
-        for(int i = 0; i < h; i++){
-            for(int j = 0; j < w; j++) sb.append(arr[i][j]).append(" ");
-            sb.append("\n");
-        }
         System.out.println(sb);
+
     }
 }

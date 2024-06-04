@@ -5,7 +5,6 @@ def solution(want, number, discount):
     my_menu_num = {}
     for i in range(len(want)): my_menu_num[want[i]] = i
     my_num = [i for i in number]
-    flag = False
     menus = deque()
 
     for menu in discount:
@@ -19,8 +18,6 @@ def solution(want, number, discount):
                 if my_num.count(0) == len(number):
                     answer += 1
             continue
-            
-        flag = False
         my_num = [i for i in number]
         menus = deque()
 

@@ -1,27 +1,15 @@
-import copy
-
-def divide(s):
-    prev = s[0].lower()
-    arr=[]
-
-    for i in s[1:].lower():
-        if "a" <= i <= "z" and "a" <= prev <= "z":
-            arr.append(prev+i)
-        prev = i
-            
-    return arr
-
 def solution(str1, str2):
-    arr1 = divide(str1)
-    arr2 = divide(str2)
-    
-    answer = 0
-    result = []
-    
-    temp_arr2 = copy.deepcopy(arr2)
+    arr1 = [str1[i:i+2].lower() for i in range(len(str1) - 1) if str1[i:i+2].isalpha()]
+    arr2 = [str2[i:i+2].lower() for i in range(len(str2) - 1) if str2[i:i+2].isalpha()]
+    A = len(arr1)
+    B = len(arr2)
+    AnB = 0
+
     for i in arr1:
-        if i in temp_arr2:
-            temp_arr2.remove(i)
-            result.append(i)
+        if i in arr2:
+            arr2.remove(i)
+            AnB += 1
+    AuB = A + B - AnB
+    J = lambda A, B : int(65536*A/B) if B!= 0 else 65536
     
-    return int(65536 * (len(result) / (len(arr1)+len(arr2)-len(result)))) if len(arr1)+len(arr2) != 0 else 65536
+    return J(AnB, AuB)

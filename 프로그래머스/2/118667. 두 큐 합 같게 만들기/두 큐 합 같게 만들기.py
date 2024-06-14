@@ -2,7 +2,7 @@ from collections import deque
 
 def solution(queue1, queue2):
     answer = 0
-    limit = len(queue1) * 3
+    limit = len(queue1) * 2 + 2
     sum_q1 = sum(queue1)
     sum_q2 = sum(queue2)
     queue1 = deque(queue1)

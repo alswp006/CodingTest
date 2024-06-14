@@ -1,0 +1,8 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+n, m  = map(int, input().split())
+arr = list(map(int,input().split()))
+point = 0
+for i in range(m):
+	point = (point + arr[point]) % n
+print(arr[point])

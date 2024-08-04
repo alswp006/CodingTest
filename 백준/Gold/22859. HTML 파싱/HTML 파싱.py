@@ -1,4 +1,4 @@
-html = input()
+html = list(input())
 
 point, end_point = 6, len(html) - 8
 answer = []

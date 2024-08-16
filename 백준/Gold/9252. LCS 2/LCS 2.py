@@ -21,7 +21,7 @@ for i in range(1, len(s2)):
         if s2[i] == s1[j]:
             arr[i][j] = arr[i - 1][j - 1] + s1[j]
         else:
-            if len(arr[i - 1][j]) >= len(arr[i][j - 1]):
+            if len(arr[i - 1][j]) > len(arr[i][j - 1]):
                 arr[i][j] = arr[i - 1][j]
             else:
                 arr[i][j] = arr[i][j - 1]

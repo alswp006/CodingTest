@@ -1,25 +1,17 @@
 import sys
 
-def cal_time(pres_time, time):
-    if point[0] > point[1]:
-        win_time[0] += time - pres_time
-    elif point[0] < point[1]:
-        win_time[1] += time - pres_time
-
 n = int(input())
 point = [0, 0]
 win_time = [0, 0]
 pres_time = 0
 
 for i in range(n):
-    team, time = map(str, sys.stdin.readline().split())
-    hour, minute = map(int, time.split(":"))
-    time = hour * 60 + minute
-    cal_time(pres_time, time)
+    team, time_str = map(str, sys.stdin.readline().split())
+    time = int(time_str[:2]) * 60 + int(time_str[3:])
+    win_time[point[0] < point[1]] += time - pres_time if point[0] != point[1] else 0
     point[int(team) - 1] += 1
     pres_time = time
-
-cal_time(pres_time, 48*60)
+win_time[point[0] < point[1]] += 48 * 60 - pres_time if point[0] != point[1] else 0
 
 print(f'{win_time[0] // 60:02}:{win_time[0] % 60:02}')
 print(f'{win_time[1] // 60:02}:{win_time[1] % 60:02}')

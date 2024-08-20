@@ -1,7 +1,9 @@
 n, k = map(int,input().split())
 
-for i in range(k):
-    n -= i + 1
+if n % 2 == 0:
+    n -= (k + 1) * k // 2
+else:
+    n -= k * (k//2 + 1)
 
 if n < 0:
     print(-1)

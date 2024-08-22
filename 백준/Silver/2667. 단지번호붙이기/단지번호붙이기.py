@@ -1,8 +1,4 @@
-import sys
-
-input = sys.stdin.readline
-
-arr = [list(map(int, input().rstrip())) for i in range(int(input()))]
+arr = [list(map(int, input())) for i in range(int(input()))]
 
 answer = []
 

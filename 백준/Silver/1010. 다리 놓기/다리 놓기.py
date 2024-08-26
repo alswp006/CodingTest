@@ -1,5 +1,5 @@
-import math
+import math, sys
 
 for _ in range(int(input())):
-    n,m=map(int,input().split())
+    n,m=map(int,sys.stdin.readline().split())
     print(math.comb(m, n))

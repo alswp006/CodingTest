@@ -3,8 +3,8 @@ class Solution {
         String[] answer = new String[n];
         
         for (int i = 0; i < n; i++){
-            String s1 = String.format("%" + n + "s", Integer.toBinaryString(arr1[i])).replace(" ","0");
-            String s2 = String.format("%" + n + "s", Integer.toBinaryString(arr2[i])).replace(" ","0");
+            String s1 = String.format("%16s", Integer.toBinaryString(arr1[i])).replace(" ","0").substring(16 - n);
+            String s2 = String.format("%16s", Integer.toBinaryString(arr2[i])).replace(" ","0").substring(16-n);
             StringBuilder sb = new StringBuilder();
             
             for (int j = 0; j < n; j++){

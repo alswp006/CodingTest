@@ -6,10 +6,11 @@ n = int(input())
 nums = list(map(int, input().split()))
 
 arr = [[0] * n for _ in range(n)]
-arr[0][0] = 1
 
-for i in range(1, n):
-    for j in range(i + 1):
+for i in range(n):
+    arr[i][i] = 1
+
+    for j in range(1, i + 1):
         if i - j < 0 or i + j >= n:
             break
         if nums[i - j] != nums[i + j]:
@@ -18,8 +19,10 @@ for i in range(1, n):
 
     if nums[i - 1] == nums[i]:
         arr[i - 1][i] = 1
+    else:
+        continue
 
-    for j in range(i + 1):
+    for j in range(1, i + 1):
         if i - j < 0 or i + j + 1 >= n:
             break
         if nums[i - j] != nums[i + j + 1]:
